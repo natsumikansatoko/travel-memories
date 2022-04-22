@@ -1,24 +1,39 @@
-# README
+# TravelMemories
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+日本地図を用いて国内旅行のオススメポイントや写真を共有できるサイト。
 
-Things you may want to cover:
+### サイトテーマ
+国内旅行した時の思い出を残して見返すことができる。
 
-* Ruby version
+### テーマを選んだ理由
+私は国内旅行が好きで今まで色々なところへ行っています。
+最近はコロナ禍で旅行に行く頻度が減っているため今まで行った旅行先を
+日本地図に落とし込み記録に残すことで思い出を見返しやすいと考えました。
+さらに他のユーザーの旅行先も見ることができれば今後の旅行先の
+参考にすることができると思い、このテーマにしました。
 
-* System dependencies
+### ターゲットユーザ
+旅行好きな人。
 
-* Configuration
+### 主な利用シーン
+自分が国内旅行した思い出を残す。
+旅行に行きたい時に他の人の旅行先を見て参考にしたいとき。
 
-* Database creation
 
-* Database initialization
+## 設計書
+<...>
 
-* How to run the test suite
+## チャレンジ要素一覧
+<https://docs.google.com/spreadsheets/d/1E4Quehglf9PxM1XTE-ft2X5-hJ5dmoJhsI-UJlgzVmY/edit#gid=0>
 
-* Services (job queues, cache servers, search engines, etc.)
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Deployment instructions
-
-* ...
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
