@@ -25,7 +25,7 @@
 <...>
 
 ## チャレンジ要素一覧
-<https://docs.google.com/spreadsheets/d/1E4Quehglf9PxM1XTE-ft2X5-hJ5dmoJhsI-UJlgzVmY/edit#gid=0>
+https://docs.google.com/spreadsheets/d/1w-GR2nD2ZoVm_HyZGz7m7tGJtTLD46jnkceHyp7InJs/edit?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)
