@@ -5,8 +5,42 @@ ActiveAdmin.register User do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :name, :email, :encrypted_password, :is_active, :reset_password_token, :reset_password_sent_at, :remember_created_at
-  #
+
+  permit_params :name, :email, :encrypted_password, :is_active
+
+
+  index do
+    selectable_column
+    id_column
+    column :name
+    column :email
+    column '投稿数' do |user|
+      user.memories.count
+    end
+    column :is_active
+    column :created_at
+    column :updated_at
+    actions
+  end
+
+  filter :name
+  filter :email
+  filter :is_active
+  filter :created_at
+  filter :updated_at
+
+
+  form do |f|
+    f.inputs do
+      f.input :name
+      f.input :email
+      f.input :encrypted_password
+      f.input :is_active
+    end
+    f.actions
+  end
+
+
   # or
   #
   # permit_params do
@@ -14,5 +48,5 @@ ActiveAdmin.register User do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
+
 end
