@@ -1,0 +1,37 @@
+ja:
+  activerecord:
+    models:
+      admin_user: "管理者"
+      comment: "コメント"
+      memory: "思い出"
+      genre: "ジャンル"
+      user: "会員"
+    attributes:
+      admin_user:
+        id: "登録番号"
+        email: "メールアドレス"
+        created_at: "登録日時"
+        updated_at: "更新日時"
+      memory:
+        id: "登録番号"
+        user: "会員名"
+        genre: "ジャンル名"
+        address: "住所"
+        district: "都道府県"
+        title: "タイトル"
+        body: "コメント"
+        rate: "評価"
+        created_at: "作成日時"
+        updated_at: "更新日時"
+      genre:
+        id: "登録番号"
+        name: "ジャンル名"
+        created_at: "作成日時"
+        updated_at: "更新日時"
+      user:
+        id: "登録番号"
+        name: "ニックネーム"
+        email: "メールアドレス"
+        is_active: "ステータス"
+        created_at: "作成日時"
+        updated_at: "更新日時"

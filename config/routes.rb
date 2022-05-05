@@ -25,7 +25,10 @@ Rails.application.routes.draw do
     get 'homes/about'
   end
 
-  devise_for :users
+  devise_for :users,skip: [:password], controllers: {
+    registrations: "user/registrations",
+    sessions: 'user/sessions'
+  }
 
   resources :users, only: [:index, :show, :edit, :update]
   resources :genres, only: [:index, :create, :edit, :update]

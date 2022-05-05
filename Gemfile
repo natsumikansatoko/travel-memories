@@ -66,3 +66,7 @@ gem 'activeadmin'
 gem 'kaminari'
 
 gem 'faker'
+
+gem 'rails-i18n'
+
+gem 'devise-i18n'
