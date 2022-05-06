@@ -2,15 +2,58 @@
 <html>
   <head>
     <title>TravelMemories</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+          <a class="navbar-brand p-3" href="/">TravelMemories</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="fas fa-sign-out-alt"></i>ログアウト&ensp;&ensp;
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to user_memories_index_path do %>
+            <i class="fas fa-suitcase-rolling"></i>思い出&ensp;&ensp;
+            <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to user_path(current_user.id) do %>
+              <i class="fas fa-house-user"></i>マイページ&ensp;&ensp;
+              <% end %>
+            </li>
+            <% else %>
+            <li class="nav-item">
+              <%= link_to new_user_registration_path do %>
+              <i class="fas fa-solid fa-user-plus"></i>新規登録&ensp;&ensp;
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to new_user_session_path do %>
+              <i class="fas fa-sign-in-alt"></i>ログイン&ensp;&ensp;
+              <% end %>
+            </li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+  <%= yield %>
   </body>
 </html>

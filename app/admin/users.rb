@@ -18,10 +18,24 @@ ActiveAdmin.register User do
       user.memories.count
     end
     column :is_active
+    column :encrypted_password
     column :created_at
     column :updated_at
     actions
   end
+
+  show do
+    attributes_table do
+    row :name
+    row :email
+    row :is_active
+    row :encrypted_password
+    row :created_at
+    row :updated_at
+    end
+    active_admin_comments
+  end
+
 
   filter :name
   filter :email

@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  devise_for :users,skip: [:password], controllers: {
+    registrations: "user/registrations",
+    sessions: 'user/sessions'
+  }
+
+
   namespace :user do
     get 'favorites/index'
     get 'favorites/create'
@@ -21,14 +28,10 @@ Rails.application.routes.draw do
     get 'users/withdrawal'
   end
   namespace :user do
-    get 'homes/top'
+    root to: 'homes#top'
     get 'homes/about'
   end
 
-  devise_for :users,skip: [:password], controllers: {
-    registrations: "user/registrations",
-    sessions: 'user/sessions'
-  }
 
   resources :users, only: [:index, :show, :edit, :update]
   resources :genres, only: [:index, :create, :edit, :update]
