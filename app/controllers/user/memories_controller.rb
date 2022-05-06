@@ -20,4 +20,9 @@ class User::MemoriesController < ApplicationController
 
   def destroy
   end
+
+  private
+  def memory_params
+    params.require(:memory).permit(:address, :district, :title, :body, :rate, :genre, :image)
+  end
 end

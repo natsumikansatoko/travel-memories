@@ -3,10 +3,60 @@
   <div class="row">
     <div class="col">
       <%= form_with model: @memory do |f| %>
-      <h6>都道府県</h4>
-
-      <h6>住所</h4>
-        <%= f.text_field :address %>
+      <table>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :都道府県 %></th>
+            <td></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :住所 %></th>
+            <td><%= f.text_field :address, :placeholder => "東京都千代田区二番町", size: 40 %></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :ジャンル %></th>
+            <td><%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "-- 選択してください --", size: 40 %></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :タイトル %></th>
+            <td><%= f.text_field :title, :placeholder => "タイトル", size: 40 %></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :コメント %></th>
+            <td><%= f.text_area :body, :placeholder => "ここに旅行の思い出を記述してください", size: "40x5" %></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :写真 %></th>
+            <td><%= f.attachment_field :image %></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="form-group" id="rate">
+            <th><%= f.label :rate, '評価' %></th>
+            <td><%= f.hidden_field :rate, id: :review_star %></td>
+          </div>
+          <script>
+            $('#star').raty({
+              size: 36,
+              starOff: '<%= asset_path('star-off.png') %>',
+              starOn: '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              scoreName: 'memory[rate]',
+              half: true,
+            });
+          </script>
+        </tr>
+      </table>
       <% end %>
     </div>
   </div>
