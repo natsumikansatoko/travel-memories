@@ -46,7 +46,8 @@
             <td><%= f.hidden_field :rate, id: :review_star %></td>
           </div>
           <script>
-            $('#star').raty({
+            $('#rate').empty();
+            $('#rate').raty({
               size: 36,
               starOff: '<%= asset_path('star-off.png') %>',
               starOn: '<%= asset_path('star-on.png') %>',

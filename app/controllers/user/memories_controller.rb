@@ -4,6 +4,14 @@ class User::MemoriesController < ApplicationController
   end
 
   def create
+    @memory = Memory.new(memory_params)
+    @memory.user_id = current_user.id
+    if @memory.save
+      redirect_to memory_path(@memory)
+    else
+      @memories = Memory.all
+      render 'index'
+    end
   end
 
   def index
