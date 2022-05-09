@@ -41,22 +41,26 @@
           </div>
         </tr>
         <tr>
-          <div class="form-group" id="rate">
+          <div class="form-group row" id="rate">
             <th><%= f.label :rate, '評価' %></th>
             <td><%= f.hidden_field :rate, id: :review_star %></td>
           </div>
-          <script>
-            $('#rate').empty();
-            $('#rate').raty({
-              size: 36,
-              starOff: '<%= asset_path('star-off.png') %>',
-              starOn: '<%= asset_path('star-on.png') %>',
-              starHalf: '<%= asset_path('star-half.png') %>',
-              scoreName: 'memory[rate]',
-              half: true,
-            });
-          </script>
         </tr>
+        <tr>
+          <div class="form-group">
+            <th></th>
+            <td><%= f.submit "投稿する" %></td>
+          </div>
+        </tr>
+        <script>
+        $('#rate').raty({
+          size: 36,
+          starOn: '<%= asset_path('star-on.png') %>',
+          starOff: '<%= asset_path('star-off.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          scoreName: 'memory[rate]',
+        });
+      </script>
       </table>
       <% end %>
     </div>
