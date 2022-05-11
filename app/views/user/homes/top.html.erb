@@ -1,2 +1,13 @@
-<h1>User::Homes#top</h1>
-<p>Find me in app/views/user/homes/top.html.erb</p>
+<title>旅行の思い出</title>
+
+  <div id="my-map"></div>
+
+  <script>
+    $(function(){
+      $("#my-map").japanMap({
+        onSelect : function(data){
+          alert(data.name);
+        }
+      });
+    });
+  </script>

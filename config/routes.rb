@@ -5,33 +5,15 @@ Rails.application.routes.draw do
     sessions: 'user/sessions'
   }
 
-
-  namespace :user do
-    get 'favorites/index'
-    get 'favorites/create'
-    get 'favorites/destroy'
+  scope module: :user do
+    root 'homes#top'
+    get '/about' => 'homes#about'
+    resources :favorites, only: [:index, :create, :destroy]
+    resources :memories, only: [:new, :create, :index, :show, :edit, :update, :destory]
+    resource :users, only: [:show, :edit, :update]
+    get '/users/unsubscribe' => 'users#unsubscribe'
+    patch '/users/withdrawal' => 'users#withdrawal'
   end
-  namespace :user do
-    get 'memories/new'
-    get 'memories/create'
-    get 'memories/index'
-    get 'memories/show'
-    get 'memories/edit'
-    get 'memories/update'
-    get 'memories/destroy'
-  end
-  namespace :user do
-    get 'users/show'
-    get 'users/edit'
-    get 'users/update'
-    get 'users/unsubscribe'
-    get 'users/withdrawal'
-  end
-  namespace :user do
-    root to: 'homes#top'
-    get 'homes/about'
-  end
-
 
   resources :users, only: [:index, :show, :edit, :update]
   resources :genres, only: [:index, :create, :edit, :update]

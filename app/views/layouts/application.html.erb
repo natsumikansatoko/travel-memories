@@ -9,6 +9,8 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+    <script src="/path/to/jquery.japan-map.js"></script>
+
   </head>
 
   <body>
@@ -29,7 +31,7 @@
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to user_memories_index_path do %>
+              <%= link_to memories_path do %>
             <i class="fas fa-suitcase-rolling"></i>思い出&ensp;&ensp;
             <% end %>
             </li>
