@@ -1,13 +1,12 @@
-<title>旅行の思い出</title>
+<h1>旅行の思い出</h1>
+
 
   <div id="my-map"></div>
 
   <script>
-    $(function(){
-      $("#my-map").japanMap({
-        onSelect : function(data){
-          alert(data.name);
-        }
-      });
-    });
+        var d = new jpmap.japanMap(document.getElementById("my-map"), {
+            onSelect: function(data){
+            alert(data.name);
+          }
+        });
   </script>
