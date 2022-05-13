@@ -10,6 +10,5 @@ environment.plugins.prepend('Provide',
         "window.jQuery": "jquery"
     })
 )
-// ここまで
 
 module.exports = environment

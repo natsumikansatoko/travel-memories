@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_06_132719) do
+ActiveRecord::Schema.define(version: 2022_05_13_064216) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -38,6 +38,12 @@ ActiveRecord::Schema.define(version: 2022_05_06_132719) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "districts", force: :cascade do |t|
+    t.integer "memory_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "favorites", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -62,7 +68,7 @@ ActiveRecord::Schema.define(version: 2022_05_06_132719) do
     t.string "address", default: "", null: false
     t.float "latitude"
     t.float "longitude"
-    t.string "district", default: "", null: false
+    t.integer "district_id", null: false
     t.string "title", null: false
     t.text "body", null: false
     t.float "rate", default: 0.0, null: false
