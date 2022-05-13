@@ -12,9 +12,17 @@
           <th>写真</th>
           <th>評価</th>
         </thead>
-      </table>
-      <% @memories.each do |memory| %>
+        <% @memories.each do |memory| %>
+        <tbody>
+          <td><%= memory.district_id %></td>
+          <td><%= memory.address %></td>
+          <td><%= memory.genre_id %></td>
+          <td><%= memory.title %></td>
+          <td><%= memory.body %></td>
+
+        </tbody>
       <% end %>
+      </table>
     </div>
   </div>
 </div>

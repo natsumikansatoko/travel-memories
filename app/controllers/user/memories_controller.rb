@@ -15,7 +15,7 @@ class User::MemoriesController < ApplicationController
   end
 
   def index
-    @memories = Memory.where(user: current_user)
+    @memories = Memory.all
   end
 
   def show
@@ -32,6 +32,6 @@ class User::MemoriesController < ApplicationController
 
   private
   def memory_params
-    params.require(:memory).permit(:address, :district_id, :title, :body, :rate, :genre, :image)
+    params.require(:memory).permit(:address, :district_id, :title, :body, :rate, :genre_id, :image)
   end
 end
