@@ -4,6 +4,12 @@ class Memory < ApplicationRecord
 
   belongs_to :user
   belongs_to :genre
+  
+  has_many :likes, dependent: :destroy
+  def liked_by?(user)
+    likes.where(user_id: user).exists?
+  end
+  
   attachment :image
 
   validates :rate, numericality: {

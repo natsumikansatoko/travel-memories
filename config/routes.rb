@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :user do
+    get 'likes/create'
+    get 'likes/destroy'
+  end
   devise_for :users,skip: [:password], controllers: {
     registrations: "user/registrations",
     sessions: 'user/sessions'
@@ -14,6 +18,9 @@ Rails.application.routes.draw do
     resource :users, only: [:show, :edit, :update]
     get '/users/unsubscribe' => 'users#unsubscribe'
     patch '/users/withdrawal' => 'users#withdrawal'
+    resources :memories do
+      resource :likes, only: [:create, :destroy]
+    end
   end
 
   resources :users, only: [:index, :show, :edit, :update]

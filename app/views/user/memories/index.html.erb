@@ -4,6 +4,7 @@
     <div class="col">
       <table class="table table-boedered">
         <thead>
+          <th>投稿者</th>
           <th>旅行先</th>
           <th>住所</th>
           <th>ジャンル</th>
@@ -11,19 +12,24 @@
           <th>コメント</th>
           <th>写真</th>
           <th>評価</th>
+          <th>いいね！</th>
         </thead>
         <% @memories.each do |memory| %>
         <tbody>
+          <td><%= memory.user.name %></td>
           <td><%= memory.district.name %></td>
           <td><%= memory.address %></td>
           <td><%= memory.genre.name %></td>
           <td><%= memory.title %></td>
           <td><%= memory.body %></td>
-　　　　　<td><%= attachment_image_tag memory, :image, format: 'jpeg', fallback: "noimage.jpeg", size: "50x50" %></td>
+　　　　　<td><%= attachment_image_tag memory, :image, format: 'jpeg', fallback: "noimage.jpeg", size: "100x100" %></td>
 　　　　　<td id="rate-<%= memory.id %>"></td>
+　　　　　<td id="likes_buttons_<%= memory.id %>">
+　　　　　  <%= render "user/likes/like", memory: memory %>
+　　　　　</td>
 　　　　　<script>
 　　　　　  $('#rate-<%= memory.id %>').raty({
-　　　　　    size: 36,
+　　　　　    size: 15,
               starOn: '<%= asset_path('star-on.png') %>',
               starOff: '<%= asset_path('star-off.png') %>',
               starHalf: '<%= asset_path('star-half.png') %>',
