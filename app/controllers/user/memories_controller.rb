@@ -10,7 +10,7 @@ class User::MemoriesController < ApplicationController
       redirect_to memory_path(@memory)
     else
       @memories = Memory.all
-      render 'index'
+      render 'new'
     end
   end
 

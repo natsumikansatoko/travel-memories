@@ -4,7 +4,7 @@
     <div class="col">
       <table class="table table-boedered">
         <thead>
-          <th>都道府県</th>
+          <th>旅行先</th>
           <th>住所</th>
           <th>ジャンル</th>
           <th>タイトル</th>
@@ -14,12 +14,24 @@
         </thead>
         <% @memories.each do |memory| %>
         <tbody>
-          <td><%= memory.district_id %></td>
+          <td><%= memory.district.name %></td>
           <td><%= memory.address %></td>
-          <td><%= memory.genre_id %></td>
+          <td><%= memory.genre.name %></td>
           <td><%= memory.title %></td>
           <td><%= memory.body %></td>
-
+　　　　　<td><%= attachment_image_tag memory, :image, format: 'jpeg', fallback: "noimage.jpeg", size: "50x50" %></td>
+　　　　　<td id="rate-<%= memory.id %>"></td>
+　　　　　<script>
+　　　　　  $('#rate-<%= memory.id %>').raty({
+　　　　　    size: 36,
+              starOn: '<%= asset_path('star-on.png') %>',
+              starOff: '<%= asset_path('star-off.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              half: true,
+              readOnly: true,
+              score: <%= memory.rate %>
+　　　　　  });
+　　　　　</script>
         </tbody>
       <% end %>
       </table>
