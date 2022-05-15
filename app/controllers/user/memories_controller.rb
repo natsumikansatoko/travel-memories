@@ -15,10 +15,11 @@ class User::MemoriesController < ApplicationController
   end
 
   def index
-    @memories = Memory.all
+    @memories = Memory.all.page(params[:page]).per(5)
   end
 
   def show
+    @memory = Memory.find(params[:id])
   end
 
   def edit

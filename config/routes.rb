@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     get '/users/unsubscribe' => 'users#unsubscribe'
     patch '/users/withdrawal' => 'users#withdrawal'
     resources :memories do
-      resource :likes, only: [:create, :destroy]
+      resources :likes, only: [:create, :destroy]
     end
   end
 

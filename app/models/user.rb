@@ -6,7 +6,10 @@ class User < ApplicationRecord
 
   has_many :memories, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :like_memories, through: :likes, source: :memory
+  has_many :liked_memories, through: :likes, source: :memory
   
-  
+  def liked_by?(memory_id)
+    likes.where(memory_id: memory_id).exists?
+  end
+
 end

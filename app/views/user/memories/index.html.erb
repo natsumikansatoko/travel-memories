@@ -1,30 +1,24 @@
 <div class="container my-4">
-  <h2><i class="fas fa-suitcase-rolling"></i>思い出一覧</h2>
+  <h2><i class="fas fa-suitcase-rolling"></i>旅の思い出一覧</h2>
   <div class="row">
     <div class="col">
       <table class="table table-boedered">
         <thead>
           <th>投稿者</th>
           <th>旅行先</th>
-          <th>住所</th>
           <th>ジャンル</th>
-          <th>タイトル</th>
-          <th>コメント</th>
           <th>写真</th>
           <th>評価</th>
           <th>いいね！</th>
         </thead>
         <% @memories.each do |memory| %>
         <tbody>
-          <td><%= memory.user.name %></td>
+          <td><%= link_to memory.user.name, memory_path(memory) %></td>
           <td><%= memory.district.name %></td>
-          <td><%= memory.address %></td>
           <td><%= memory.genre.name %></td>
-          <td><%= memory.title %></td>
-          <td><%= memory.body %></td>
-　　　　　<td><%= attachment_image_tag memory, :image, format: 'jpeg', fallback: "noimage.jpeg", size: "100x100" %></td>
+　　　　　<td><%= attachment_image_tag memory, :image, format: 'jpeg', fallback: "noimage.jpeg", size: "100x80" %></td>
 　　　　　<td id="rate-<%= memory.id %>"></td>
-　　　　　<td id="likes_buttons_<%= memory.id %>">
+　　　　　<td id="like_buttons_<%= memory.id %>">
 　　　　　  <%= render "user/likes/like", memory: memory %>
 　　　　　</td>
 　　　　　<script>
