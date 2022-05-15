@@ -14,8 +14,12 @@ Rails.application.routes.draw do
     get '/about' => 'homes#about'
     resources :districts, only: [:index, :show]
     resources :favorites, only: [:index, :create, :destroy]
-    resources :memories, only: [:new, :create, :index, :show, :edit, :update, :destory]
-    resource :users, only: [:show, :edit, :update]
+    resources :memories, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+      resource :favorites, only: [:create, :destroy]
+    end
+    resources :users, only: [:show, :edit, :update] do
+      get :favorites, on: :collection
+    end
     get '/users/unsubscribe' => 'users#unsubscribe'
     patch '/users/withdrawal' => 'users#withdrawal'
     resources :memories do

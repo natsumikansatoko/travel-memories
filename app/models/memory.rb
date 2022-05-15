@@ -7,6 +7,8 @@ class Memory < ApplicationRecord
 
   has_many :likes, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
+  
+  has_many :favorites, dependent: :destroy
 
   attachment :image
 
