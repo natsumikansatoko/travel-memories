@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_14_031131) do
+ActiveRecord::Schema.define(version: 2022_05_15_073226) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -78,6 +78,13 @@ ActiveRecord::Schema.define(version: 2022_05_14_031131) do
     t.integer "user_id"
     t.integer "genre_id"
     t.string "image_id"
+  end
+
+  create_table "memory_images", force: :cascade do |t|
+    t.integer "memory_id", null: false
+    t.string "image_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|

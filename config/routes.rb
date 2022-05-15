@@ -17,9 +17,7 @@ Rails.application.routes.draw do
     resources :memories, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resource :favorites, only: [:create, :destroy]
     end
-    resources :users, only: [:show, :edit, :update] do
-      get :favorites, on: :collection
-    end
+    resources :users, only: [:show, :edit, :update]
     get '/users/unsubscribe' => 'users#unsubscribe'
     patch '/users/withdrawal' => 'users#withdrawal'
     resources :memories do

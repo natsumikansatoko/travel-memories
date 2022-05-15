@@ -1,2 +1,51 @@
-<h1>User::Memories#edit</h1>
-<p>Find me in app/views/user/memories/edit.html.erb</p>
+<div class="container my-4">
+  <h2><i class="fas fa-suitcase-rolling"></i>旅の思い出編集</h2>
+  <div class="row">
+    <div class="col">
+      <%= form_with model: @memory, local: true do |f| %>
+        <div class="form-group">
+          <%= f.label :都道府県, class: 'col-md-3 col-form-label' %>
+          <%= f.collection_select(:district_id, District.all, :id, :name, {include_blank: "---"}, {class:"district-select"}) %>
+        </div>
+        <div class="form-group">
+          <%= f.label :住所, class: 'col-md-3 col-form-label' %>
+          <%= f.text_field :address, :placeholder => "東京都千代田区二番町", size: 40 %>
+        </div>
+        <div class="form-group">
+          <%= f.label :ジャンル, class: 'col-md-3 col-form-label' %>
+          <%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "-- 選択してください --", size: 40 %>
+        </div>
+        <div class="form-group">
+          <%= f.label :タイトル, class: 'col-md-3 col-form-label' %>
+          <%= f.text_field :title, :placeholder => "タイトル", size: 40 %>
+        </div>
+        <div class="form-group">
+          <%= f.label :コメント, class: 'col-md-3 col-form-label' %>
+          <%= f.text_area :body, :placeholder => "ここに旅行の思い出を記述してください", size: "40x5" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :写真, class: 'col-md-3 col-form-label' %>
+          <%= f.attachment_field :memory_images_images, multiple: true %>
+        </div>
+        <div class="form-group" id="rate">
+          <%= f.label :評価, class: 'col-md-3 col-form-label' %>
+          <%= f.hidden_field :rate, id: :review_star %>
+        </div>
+        <div class="form-group col-6 mx-auto">
+          <%= f.submit "投稿する", class: 'btn btn-success' %>
+        </div>
+        <script>
+        $('#rate').raty({
+          size: 15,
+          starOn: '<%= asset_path('star-on.png') %>',
+          starOff: '<%= asset_path('star-off.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          score: <%= @memory.rate %>,
+          scoreName: 'memory[rate]',
+          half: true
+        });
+        </script>
+      <% end %>
+    </div>
+  </div>
+</div>

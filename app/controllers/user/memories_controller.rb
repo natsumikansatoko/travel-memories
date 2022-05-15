@@ -23,9 +23,16 @@ class User::MemoriesController < ApplicationController
   end
 
   def edit
+    @memory = Memory.find(params[:id])
   end
 
   def update
+    @memory = Memory.find(params[:id])
+    if @memory.update(memory_params)
+      redirect_to memory_path(@memory)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -33,6 +40,6 @@ class User::MemoriesController < ApplicationController
 
   private
   def memory_params
-    params.require(:memory).permit(:address, :district_id, :title, :body, :rate, :genre_id, :image)
+    params.require(:memory).permit(:address, :district_id, :title, :body, :rate, :genre_id, memory_images_images: [])
   end
 end

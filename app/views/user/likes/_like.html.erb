@@ -1,5 +1,5 @@
 <% if !user_signed_in? %>
-  <i class="fa fa-heart like-btn"></i>
+  <i>♡</i>
   <%= memory.likes.length %>
 <% elsif current_user.liked_by?(memory.id) %>
   <%= link_to memory_like_path(memory, memory.likes), class: "like-link", method: :delete, remote: true do %>
