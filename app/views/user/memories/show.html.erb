@@ -2,7 +2,7 @@
   <h2><i class="fas fa-suitcase-rolling"></i>旅の思い出詳細</h2>
   <div class="row">
     <div class="col-lg-4">
-      <div id="slider">
+      <div class="slider">
         <% @memory.memory_images.each do |image| %>
           <%= attachment_image_tag image, :image, format: 'jpeg', size: "300x250" %>
         <% end %>
@@ -49,12 +49,18 @@
             score: <%= @memory.rate %>
 　　　　　});
 　　　　</script>
-　　　　<script>
-          $('.slider').slick({
-            arrows: false,
-            autoplay: true,
-            autoplaySpeed: 4000,
-          });
+
+　　　　<script type="text/javascript">
+　　　　  $(document).ready(function(){
+　　　　    $('.slider').slick({
+　　　　      arrows: true,
+　　　　      dots: true,
+　　　　      infinite: true,
+　　　　      accessibility: true,
+　　　　      slidesToShow: 1,
+　　　　      slidesToScroll: 1
+　　　　    });
+　　　　  });
 　　　　</script>
       </table>
       <div class="d-flex justify-content-around">
@@ -63,3 +69,6 @@
     </div>
   </div>
 </div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
