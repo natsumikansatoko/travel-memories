@@ -66,6 +66,9 @@
       <div class="d-flex justify-content-around">
         <p><%= link_to '編集する', edit_memory_path(@memory.id), class: 'btn btn-success' %></p>
       </div>
+      <div class="d-flex justify-content-around">
+        <p><%= link_to '削除する', memory_path(@memory.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-primary' %></p>
+      </div>
     </div>
   </div>
 </div>

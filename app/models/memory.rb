@@ -16,6 +16,9 @@ class Memory < ApplicationRecord
   has_many :memory_images, dependent: :destroy
   accepts_attachments_for :memory_images, attachment: :image
 
+  geocoded_by :address
+  after_validation :geocode
+
   validates :rate, numericality: {
     less_than_or_equal_to: 5,
     greater_than_or_equal_to: 1

@@ -36,6 +36,9 @@ class User::MemoriesController < ApplicationController
   end
 
   def destroy
+    @memory = Memory.find(params[:id])
+    @memory.destroy
+    redirect_to memories_path
   end
 
   private

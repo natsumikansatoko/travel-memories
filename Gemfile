@@ -74,3 +74,5 @@ gem 'rails-i18n'
 gem 'devise-i18n'
 
 gem 'active_hash'
+
+gem 'geocoder'
