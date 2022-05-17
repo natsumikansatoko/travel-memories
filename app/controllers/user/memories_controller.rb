@@ -43,6 +43,6 @@ class User::MemoriesController < ApplicationController
 
   private
   def memory_params
-    params.require(:memory).permit(:address, :district_id, :title, :body, :rate, :genre_id, memory_images_images: [])
+    params.require(:memory).permit(:latitude, :longitude, :address, :district_id, :title, :body, :rate, :genre_id, memory_images_images: [])
   end
 end

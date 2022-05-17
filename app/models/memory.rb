@@ -17,7 +17,7 @@ class Memory < ApplicationRecord
   accepts_attachments_for :memory_images, attachment: :image
 
   geocoded_by :address
-  after_validation :geocode
+  after_validation :geocode, if: :address_changed?
 
   validates :rate, numericality: {
     less_than_or_equal_to: 5,

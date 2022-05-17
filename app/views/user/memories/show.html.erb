@@ -7,6 +7,39 @@
           <%= attachment_image_tag image, :image, format: 'jpeg', size: "300x250" %>
         <% end %>
       </div>
+      <div id="map"></div>
+      <style>
+        #map {
+          height: 150px;
+          width: 270px;
+        }
+      </style>
+      <script type="text/javascript">
+        function initMap() {
+          var test = {lat: <%= @memory.latitude %>, lng: <%= @memory.longitude %>};
+          var map = new google.maps.Map(document.getElementById('map'), {
+            center: test
+            zoom: 15
+          });
+          var transitLayer = new google.maps.TransitLayer();
+          transitLayer.setMap(map);
+
+          var contentString = '住所:<%= @memory.address %>';
+          var infowindow = new google.maps.InfoWindow({
+            content: contentString
+          });
+
+          var marker = new google.maps.Marker({
+            position: test,
+            map: map;
+            title: contentString
+          });
+
+          marker.addListener('click', function() {
+            infowindow.open(map, marker);
+          });
+        }
+      </script>
     </div>
     <div class="col-lg-8">
       <table class="table">
@@ -72,6 +105,7 @@
     </div>
   </div>
 </div>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp$key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
