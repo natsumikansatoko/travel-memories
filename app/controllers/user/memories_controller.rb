@@ -20,6 +20,7 @@ class User::MemoriesController < ApplicationController
 
   def show
     @memory = Memory.find(params[:id])
+    
   end
 
   def edit
