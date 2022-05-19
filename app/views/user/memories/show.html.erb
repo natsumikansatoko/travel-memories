@@ -7,37 +7,25 @@
           <%= attachment_image_tag image, :image, format: 'jpeg', size: "300x250" %>
         <% end %>
       </div>
-      <script type="text/javascript">
-     function initMap() {
-       var test = {lat: <%= @latitude %>, lng: <%= @longitude %>};
-       var map = new google.maps.Map(document.getElementById('map'), {
-                 zoom: 15,
-                 center: test
-                 });
-       var transitLayer = new google.maps.TransitLayer();
-       transitLayer.setMap(map);
-       var contentString = '住所：<%= @memory.address %>';
-       var infowindow = new google.maps.InfoWindow({
-         content: contentString
-       });
-       var marker = new google.maps.Marker({
-                     position:test,
-                     map: map,
-                     title: contentString
-                   });
-       marker.addListener('click', function() {
-         infowindow.open(map, marker);
-       });
-     }
-   </script>
-   <script async defer
-             src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
-   </script>
-   <style type="text/css">
-     #map { height: 200px;
-           width: 70%;}
-   </style>
-   <div id="map"></div>
+
+      <div id='map'></div>
+
+      <style>
+        #map {
+        height: 300px;
+        width: 400px;
+      }
+      </style>
+
+      <script>
+        function initMap(){
+          let map = new google.maps.Map(document.getElementById('map'), {
+          center: myLatLng,
+          zoom: 8
+          });
+        }
+     </script>
+
     </div>
     <div class="col-lg-8">
       <table class="table">
@@ -106,3 +94,4 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>

@@ -16,7 +16,7 @@ class Memory < ApplicationRecord
   has_many :memory_images, dependent: :destroy
   accepts_attachments_for :memory_images, attachment: :image
 
-  geocoded_by :address
+  geocoded_by :address, latitude: :lat, longitude: :lng
   after_validation :geocode, if: :address_changed?
 
   validates :rate, numericality: {
