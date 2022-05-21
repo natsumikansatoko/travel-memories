@@ -1,2 +1,48 @@
-<h1>Districts#show</h1>
-<p>Find me in app/views/districts/show.html.erb</p>
+<div class="container my-4">
+  <h2><i class="fas fa-suitcase-rolling"></i><%= @district.name %>思い出一覧</h2>
+  <div class="row">
+    <div class="col-lg-12">
+      <table class="table table-boedered">
+        <thead align="center">
+          <th style="width: 12%">投稿者</th>
+          <th style="width: 12%">旅行先</th>
+          <th style="width: 12%">ジャンル</th>
+          <th style="width: 12%">写真</th>
+          <th style="width: 12%">評価</th>
+          <th style="width: 12%">いいね！</th>
+          <th style="width: 12%">ブックマーク</th>
+        </thead>
+        <% @memories.each do |memory| %>
+        <tbody align="center">
+          <td><%= link_to memory.user.name, memory_path(memory) %></td>
+          <td><%= memory.district.name %></td>
+          <td><%= memory.genre.name %></td>
+　　　　　<td>
+　　　　　  <% memory.memory_images.first(1).each do |image| %>
+　　　　　    <%= attachment_image_tag image, :image, size: '100x80' %>
+　　　　　  <% end %>
+　　　　　</td>
+　　　　　<td id="rate-<%= memory.id %>"></td>
+　　　　　<td>
+　　　　　  <%= memory.likes.count %>
+　　　　　</td>
+　　　　　<td>
+　　　　　  <%= memory.favorites.count %>
+　　　　　</td>
+　　　　　<script>
+　　　　　  $('#rate-<%= memory.id %>').raty({
+　　　　　    size: 15,
+              starOn: '<%= asset_path('star-on.png') %>',
+              starOff: '<%= asset_path('star-off.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              half: true,
+              readOnly: true,
+              score: <%= memory.rate %>
+　　　　　  });
+　　　　　</script>
+        </tbody>
+      <% end %>
+      </table>
+    </div>
+  </div>
+</div>
