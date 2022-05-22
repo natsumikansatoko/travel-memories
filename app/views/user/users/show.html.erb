@@ -1,4 +1,51 @@
 <div class="container my-4">
   <h2><i class="fas fa-suitcase-rolling"></i><%= @user.name %>さんのマイページ</h2>
   <div class="row">
-    <div class="col">
+    <div class="col-lg-7">
+      <table class="table">
+        <tr>
+          <th class="text_left">ニックネーム</th>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <th class="text_left">メールアドレス</th>
+          <td><%= @user.email %></td>
+        </tr>
+      </table>
+      <div class="d-flex justify-content-around">
+        <p><%= link_to '編集する', edit_user_path(@user.id), class: 'btn btn-success' %></p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-5">
+      <table class="table table-boedered">
+        <h3>My Memories</h3>
+        <thead>
+          <th>旅行先</th>
+          <th>ジャンル</th>
+        </thead>
+        <% @memories.each do |memory| %>
+        <tbody>
+          <td><%= link_to memory.district.name, memory_path(memory) %></td>
+          <td><%= memory.genre.name %></td>
+        </tbody>
+        <% end %>
+    </div>
+    <div class="col-lg-5">
+      <table class="table table-boedered">
+        <h3>My Favorites</h3>
+        <thead>
+          <th>旅行先</th>
+          <th>ジャンル</th>
+        </thead>
+        <% @favorites.each do |favorite| %>
+        <tbody>
+          <td><%= link_to favorite.district.name, memory_path(favorite) %></td>
+          <td><%= favorite.genre.name %></td>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
