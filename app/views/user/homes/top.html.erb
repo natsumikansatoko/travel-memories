@@ -1,5 +1,13 @@
-<h1>旅行の思い出</h1>
+<div class="container my-4">
+  <h1>旅行の思い出</h1>
 
+　<div class="search-form">
+　  <p>旅行の思い出を検索！</p>
+    <%= form_with url: search_path, method: :get, local: true do |f| %>
+      <%= f.text_field :keyword, value: @keyword %>
+      <%= f.submit "検索" %>
+    <% end %>
+  </div>
 
   <div class="container my-4"id="my-map"></div>
 
@@ -114,3 +122,4 @@
       }
     });
   </script>
+</div>

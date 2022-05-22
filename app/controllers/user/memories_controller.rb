@@ -16,11 +16,12 @@ class User::MemoriesController < ApplicationController
 
   def index
     @memories = Memory.all.page(params[:page]).per(5)
+    @all_ranks = Memory.find(Like.group(:memory_id).order('count(memory_id) desc').limit(5).pluck(:memory_id))
   end
 
   def show
     @memory = Memory.find(params[:id])
-    
+
   end
 
   def edit
@@ -40,6 +41,12 @@ class User::MemoriesController < ApplicationController
     @memory = Memory.find(params[:id])
     @memory.destroy
     redirect_to memories_path
+  end
+
+  def search
+    @memories = Memory.search(params[:keyword])
+    @keyword = params[:keyword]
+    render :index
   end
 
   private
