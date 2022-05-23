@@ -1,15 +1,27 @@
 <div class="container my-4">
   <h2><i class="fas fa-suitcase-rolling"></i>旅の思い出一覧</h2>
-    <h5><%= link_to "旅の思い出投稿", new_memory_path %></h5>
-    <div class="search-form">
-      <%= form_with url: search_path, method: :get, local: true do |f| %>
-        <%= f.text_field :keyword, value: @keyword %>
-        <%= f.submit "検索" %>
-      <% end %>
+  <div class="row">
+    <div class="col-lg-5 my-4">
+      <h5><%= link_to "旅の思い出投稿", new_memory_path %></h5>
+      <div class="search-form">
+        <%= form_with url: search_path, method: :get, local: true do |f| %>
+          <%= f.text_field :keyword, value: @keyword %>
+          <%= f.submit "検索" %>
+        <% end %>
+      </div>
     </div>
-    <% @all_ranks.each.with_index(1) do |like| %>
-      <%= like.title %>
-    <% end %>
+    <div class="col-lg-5 my-4">
+      <div>
+        いいね♡ランキング
+      　<% @all_ranks.each.with_index(1) do |like, i| %>
+          <p>
+            第<%= i %>位
+            <%= link_to like.title, memory_path(like) %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col">
       <table class="table table-boedered">

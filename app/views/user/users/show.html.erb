@@ -13,7 +13,9 @@
         </tr>
       </table>
       <div class="d-flex justify-content-around">
-        <p><%= link_to '編集する', edit_user_path(@user.id), class: 'btn btn-success' %></p>
+        <% if user_signed_in? && @user == current_user %>
+          <%= link_to "プロフィール編集", edit_user_registration_path, class: "btn btn-success" %>
+        <% end %>
       </div>
     </div>
   </div>
@@ -23,12 +25,12 @@
         <h3>My Memories</h3>
         <thead>
           <th>旅行先</th>
-          <th>ジャンル</th>
+          <th>タイトル</th>
         </thead>
         <% @memories.each do |memory| %>
         <tbody>
           <td><%= link_to memory.district.name, memory_path(memory) %></td>
-          <td><%= memory.genre.name %></td>
+          <td><%= memory.title %></td>
         </tbody>
         <% end %>
     </div>
@@ -37,12 +39,12 @@
         <h3>My Favorites</h3>
         <thead>
           <th>旅行先</th>
-          <th>ジャンル</th>
+          <th>タイトル</th>
         </thead>
         <% @favorites.each do |favorite| %>
         <tbody>
           <td><%= link_to favorite.district.name, memory_path(favorite) %></td>
-          <td><%= favorite.genre.name %></td>
+          <td><%= favorite.title %></td>
         </tbody>
         <% end %>
       </table>

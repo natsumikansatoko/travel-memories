@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
       if resource_class == User
         devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email])
         devise_parameter_sanitizer.permit(:sign_in, keys: [:email])
+        devise_parameter_sanitizer.permit(:account_updata, keys: [:name, :email])
       end
     end
 end
