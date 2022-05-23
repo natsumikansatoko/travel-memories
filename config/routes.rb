@@ -1,13 +1,18 @@
 Rails.application.routes.draw do
 
-  namespace :user do
-    get 'likes/create'
-    get 'likes/destroy'
-  end
   devise_for :users,skip: [:password], controllers: {
     registrations: "user/registrations",
     sessions: 'user/sessions'
   }
+
+  namespace :user do
+    get 'likes/create'
+    get 'likes/destroy'
+  end
+
+  devise_scope :user do
+    post 'user/guest_sign_in' => 'user/sessions#guest_sign_in'
+  end
 
   scope module: :user do
     root 'homes#top'
@@ -19,8 +24,8 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
     end
     resources :users, only: [:show, :edit, :update]
-    get '/users/unsubscribe' => 'users#unsubscribe'
-    patch '/users/withdrawal' => 'users#withdrawal'
+    get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+    patch '/users/withdrawal' => 'users#withdrawal', as: 'withdrawal'
     resources :memories do
       resources :likes, only: [:create, :destroy]
     end
