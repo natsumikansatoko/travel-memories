@@ -25,7 +25,11 @@ class Memory < ApplicationRecord
     greater_than_or_equal_to: 1
   }, presence: true
 
-  def self.search(keyword)
-    where(["title like? OR body like?", "%#{keyword}%", "%#{keyword}%"])
+  def self.search(search)
+    if search != ""
+      Memory.where('title LIKE(?)', "%#{search}%")
+    else
+      Memory.includes(:user)
+    end
   end
 end

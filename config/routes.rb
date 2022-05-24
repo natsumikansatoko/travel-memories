@@ -17,11 +17,13 @@ Rails.application.routes.draw do
   scope module: :user do
     root 'homes#top'
     get '/about' => 'homes#about'
-    get 'search' => 'memories#search'
     resources :districts, only: [:index, :show]
     resources :favorites, only: [:index, :create, :destroy]
     resources :memories, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resource :favorites, only: [:create, :destroy]
+      collection do
+        get 'search'
+      end
     end
     resources :users, only: [:show, :edit, :update]
     get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'

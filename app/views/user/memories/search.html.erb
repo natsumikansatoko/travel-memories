@@ -1,0 +1,113 @@
+<div class="container my-4">
+  <h2><i class="fas fa-suitcase-rolling"></i>検索結果</h2>
+  <div class="row">
+    <div class="col-lg-4">
+      <% @memories.each do |memory| %>
+      <div class="slider">
+        <% memory.memory_images.each do |image| %>
+          <%= attachment_image_tag image, :image, format: 'jpeg', size: "300x250" %>
+        <% end %>
+      </div>
+
+      <div id='map'></div>
+
+      <style>
+      #map {
+        height: 250px;
+        width: 300px;
+      }
+      </style>
+
+      <script type="text/javascript">
+        function initMap(){
+          var test ={lat: <%= memory.latitude %>, lng: <%= memory.longitude %>};
+
+          var map = new google.maps.Map(document.getElementById('map'), {
+          center: test,
+          zoom: 15,
+          });
+
+          var transitLayer = new google.maps.TransitLayer();
+          transitLayer.setMap(map);
+
+          var contentString = '住所:<%= memory.address %>';
+          var infowindow = new google.maps.InfoWindow({
+            content: contentString
+          });
+
+          var marker = new google.maps.Marker({
+            position: test,
+            map: map,
+            title: contentString
+          });
+
+          marker.addListener('click', function(){
+            infowindow.open(map, marker);
+          });
+        }
+      </script>
+    </div>
+    <div class="col-lg-8">
+      <table class="table">
+        <tr>
+          <th class="text_left">旅行先</th>
+          <td><%= link_to memory.district.name %></td>
+        </tr>
+        <tr>
+          <th class="text_left">住所</th>
+          <td><%= memory.address %></td>
+        </tr>
+        <tr>
+          <th class="text_left">ジャンル</th>
+          <td><%= memory.genre.name %></td>
+        </tr>
+        <tr>
+          <th class="text_left">タイトル</th>
+          <td><%= memory.title %></td>
+        </tr>
+        <tr>
+          <th class="text_left">コメント</th>
+          <td><%= memory.body %></td>
+        </tr>
+        <tr>
+          <th class="text_left">評価</th>
+          <td id="rate-<%= memory.id %>"></td>
+        </tr>
+        <tr>
+          <th class="text_left">いいね!</th>
+          <td><%= memory.likes.count %></td>
+        </tr>
+        <script>
+　　　　　$('#rate-<%= memory.id %>').raty({
+　　　　　  size: 15,
+            starOn: '<%= asset_path('star-on.png') %>',
+            starOff: '<%= asset_path('star-off.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= memory.rate %>
+　　　　　});
+　　　　</script>
+
+　　　　<script type="text/javascript">
+　　　　  $(document).ready(function(){
+　　　　    $('.slider').slick({
+　　　　      arrows: true,
+　　　　      dots: true,
+　　　　      infinite: true,
+　　　　      accessibility: true,
+　　　　      slidesToShow: 1,
+　　　　      slidesToScroll: 1
+　　　　    });
+　　　　  });
+　　　　</script>
+
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>

@@ -45,8 +45,6 @@ class User::MemoriesController < ApplicationController
 
   def search
     @memories = Memory.search(params[:keyword])
-    @keyword = params[:keyword]
-    render :index
   end
 
   private
