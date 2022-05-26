@@ -1,7 +1,7 @@
 <div class="container my-4">
-  <h1>旅行の思い出</h1>
+  <h2><i class="fas fa-suitcase-rolling"></i> 旅行の思い出</h2>
 
-　<div class="search-form">
+　<div class="search-form col-lg-4">
     <%= form_with url: search_memories_path, method: :get, local: true do |f| %>
       <%= f.text_field :keyword, placeholder: "旅の思い出を検索する" %>
       <%= f.submit "検索" %>

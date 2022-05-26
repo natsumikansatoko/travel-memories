@@ -1,7 +1,7 @@
 <div class="container my-4">
-  <h2><i class="fas fa-suitcase-rolling"></i><%= @user.name %>さんのマイページ</h2>
+  <h2><i class="fas fa-suitcase-rolling"></i> <%= @user.name %>さんのマイページ</h2>
   <div class="row">
-    <div class="col-lg-7">
+    <div class="col-lg-5">
       <table class="table">
         <tr>
           <th class="text_left">ニックネーム</th>
@@ -14,19 +14,21 @@
       </table>
       <div class="d-flex center">
         <% if user_signed_in? && @user == current_user %>
-          <%= link_to "プロフィール編集", edit_user_registration_path, class: "btn btn-success" %>
+          <%= link_to "プロフィール編集", edit_user_registration_path, class: "btn btn-success mx-auto" %>
         <% end %>
       </div>
+      <br>
       <div class="d-flex center">
         <% if user_signed_in? && @user.id == current_user.id %>
-          <%= link_to "退会手続き", unsubscribe_path, class: "btn btn-outline-danger" %>
+          <%= link_to "退会手続き", unsubscribe_path, class: "btn btn-danger mx-auto" %>
         <% end %>
       </div>
+      <br>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-5">
-      <table class="table table-boedered">
+      <table class="table table-warning">
         <h3>My Memories</h3>
         <thead>
           <th>旅行先</th>
@@ -40,7 +42,7 @@
         <% end %>
     </div>
     <div class="col-lg-5">
-      <table class="table table-boedered">
+      <table class="table table-warning">
         <h3>My Favorites</h3>
         <thead>
           <th>旅行先</th>
