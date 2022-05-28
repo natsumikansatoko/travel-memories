@@ -1,4 +1,5 @@
 class User::UsersController < ApplicationController
+  before_action :authenticate_user!
   def show
     @user = User.find(params[:id])
     @memories = @user.memories
@@ -19,11 +20,11 @@ class User::UsersController < ApplicationController
   end
 
   def unsubscribe
-    
+    @user = current_user
   end
 
   def withdrawal
-    @user = User.find(params[:id])
+    @user = current_user
     @user.update(is_active: false)
     reset_session
     flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"

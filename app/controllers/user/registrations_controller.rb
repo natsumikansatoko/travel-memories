@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 class User::RegistrationsController < Devise::RegistrationsController
-  before_action :ensure_normal_user, only: :destroy
+  before_action :authenticate_user!
+  before_action :ensure_normal_user, only: %i[update destroy]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  
+
   def ensure_normal_user
     if resource.email == 'guest@example.com'
-      redirect_to root_path, aleart: 'ゲストユーザーは削除できません。'
+      redirect_to root_path, alert: 'ゲストユーザーは更新・削除できません。'
     end
   end
   # GET /resource/sign_up
@@ -49,7 +50,7 @@ class User::RegistrationsController < Devise::RegistrationsController
   def update_resource(resource, params)
     resource.update_without_current_password(params)
   end
-  
+
   def after_update_path_for(resource)
     user_path(@user.id)
   end

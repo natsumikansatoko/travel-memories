@@ -35,33 +35,38 @@
             <% if user_signed_in? %>
             <li class="nav-item">
               <%= link_to destroy_user_session_path, method: :delete do %>
-              <i class="fas fa-sign-out-alt"></i>ログアウト&ensp;&ensp;
+              <i class="fas fa-sign-out-alt"></i>ログアウト
               <% end %>
             </li>
+            &ensp;&ensp;
             <li class="nav-item">
               <%= link_to memories_path do %>
-              <i class="fas fa-suitcase-rolling"></i>思い出&ensp;&ensp;
+              <i class="fas fa-suitcase-rolling"></i>思い出
               <% end %>
             </li>
+            &ensp;&ensp;
             <li class="nav-item">
               <%= link_to root_path do %>
-              <i class="fas fa-solid fa-map"></i>トップ&ensp;&ensp;
+              <i class="fas fa-solid fa-map"></i>トップ
               <% end %>
             </li>
+            &ensp;&ensp;
             <li class="nav-item">
               <%= link_to user_path(current_user.id) do %>
-              <i class="fas fa-house-user"></i>マイページ&ensp;&ensp;
+              <i class="fas fa-house-user"></i>マイページ
               <% end %>
             </li>
+            &ensp;&ensp;
             <% else %>
             <li class="nav-item">
               <%= link_to new_user_registration_path do %>
-              <i class="fas fa-solid fa-user-plus"></i>新規登録&ensp;&ensp;
+              <i class="fas fa-solid fa-user-plus"></i>新規登録
               <% end %>
             </li>
+            &ensp;&ensp;
             <li class="nav-item">
               <%= link_to new_user_session_path do %>
-              <i class="fas fa-sign-in-alt"></i>ログイン&ensp;&ensp;
+              <i class="fas fa-sign-in-alt"></i>ログイン
               <% end %>
             </li>
             <% end %>
