@@ -3,6 +3,7 @@ class Memory < ApplicationRecord
   after_validation :geocode, if: :address_changed?
 
   extend ActiveHash::Associations::ActiveRecordExtensions
+
   belongs_to :district
 
   belongs_to :user

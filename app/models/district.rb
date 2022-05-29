@@ -19,4 +19,5 @@ class District < ActiveHash::Base
   ]
   include ActiveHash::Associations
   has_many :memories
+  has_many :users
 end

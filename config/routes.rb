@@ -16,7 +16,8 @@ Rails.application.routes.draw do
 
   scope module: :user do
     root 'homes#top'
-    get '/about' => 'homes#about'
+    get 'users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+    patch 'users/withdrawal' => 'users#withdrawal', as: 'withdrawal'
     resources :districts, only: [:index, :show]
     resources :favorites, only: [:index, :create, :destroy]
     resources :memories, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
@@ -26,8 +27,6 @@ Rails.application.routes.draw do
       end
     end
     resources :users, only: [:show, :edit, :update]
-    get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
-    patch '/users/withdrawal' => 'users#withdrawal', as: 'withdrawal'
     resources :memories do
       resources :likes, only: [:create, :destroy]
     end

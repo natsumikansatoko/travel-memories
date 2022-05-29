@@ -18,7 +18,6 @@ ActiveAdmin.register User do
       user.memories.count
     end
     column :is_active
-    column :encrypted_password
     column :created_at
     column :updated_at
     actions
@@ -29,7 +28,6 @@ ActiveAdmin.register User do
     row :name
     row :email
     row :is_active
-    row :encrypted_password
     row :created_at
     row :updated_at
     end
@@ -48,7 +46,6 @@ ActiveAdmin.register User do
     f.inputs do
       f.input :name
       f.input :email
-      f.input :encrypted_password
       f.input :is_active
     end
     f.actions

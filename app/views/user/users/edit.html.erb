@@ -11,13 +11,13 @@
           <%= f.label :メールアドレス, class: 'col-md-3 col-form-label' %>
           <%= f.email_field :email %>
         </div>
-        <div class="form-group">
-          <%= f.label :パスワード, class: 'col-md-3 col-form-label' %>
-          <%= f.password_field :password %>
-        </div>
         <div class="form-group col-6 max-auto">
           <%= f.submit "保存する", class: 'btn btn-success' %>
         </div>
+        <div class="form-group col-6 max-auto">
+          <%= link_to "退会手続き", unsubscribe_path, class: "btn btn-danger mx-auto" %>
+        </div>
+      </div>
       <% end %>
     </div>
   </div>

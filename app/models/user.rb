@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  extend ActiveHash::Associations::ActiveRecordExtensions
+
+  belongs_to :district
   has_many :memories, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_memories, through: :likes, source: :memory
@@ -33,6 +36,7 @@ class User < ApplicationRecord
     end
   end
 
-  
-
+  def active_for_authentication
+    super && (is_active == true)
+  end
 end

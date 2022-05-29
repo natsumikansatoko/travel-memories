@@ -4,6 +4,14 @@
     <div class="col-lg-5">
       <table class="table">
         <tr>
+          <th class="text_left">投稿数</th>
+          <td><%= @memories.count %></td>
+        </tr>
+        <tr>
+          <th class="text_left">行ったことがある都道府県数</th>
+          <td><%= @district_count %></td>
+        </tr>
+        <tr>
           <th class="text_left">ニックネーム</th>
           <td><%= @user.name %></td>
         </tr>
@@ -14,13 +22,7 @@
       </table>
       <div class="d-flex center">
         <% if user_signed_in? && @user == current_user %>
-          <%= link_to "プロフィール編集", edit_user_registration_path, class: "btn btn-success mx-auto" %>
-        <% end %>
-      </div>
-      <br>
-      <div class="d-flex center">
-        <% if user_signed_in? && @user.id == current_user.id %>
-          <%= link_to "退会手続き", unsubscribe_path, class: "btn btn-danger mx-auto" %>
+          <%= link_to "プロフィール編集", edit_user_path, class: "btn btn-success mx-auto" %>
         <% end %>
       </div>
       <br>

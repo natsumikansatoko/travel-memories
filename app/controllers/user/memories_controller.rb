@@ -1,4 +1,5 @@
 class User::MemoriesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :cerate, :edit, :update, :destroy]
   def new
     @memory = Memory.new
   end
@@ -21,6 +22,7 @@ class User::MemoriesController < ApplicationController
 
   def show
     @memory = Memory.find(params[:id])
+    @user = current_user
 
   end
 

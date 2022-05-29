@@ -15,18 +15,11 @@
         <%= f.email_field :email, autofocus: true, autocomplete: "メールアドレス" %>
       </div>
 
-      <div class="form-group">
-        <%= f.label :password, class: 'col-md-3 col-form-label' %>
-        <%= f.password_field :password, autocomplete: "new-password" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :password_confirmation, class: 'col-md-3 col-form-label' %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-      </div>
-
       <div class="actions">
         <%= f.submit "保存", class: "btn btn-success" %>
+      </div>
+      <div class="form-group col-6 max-auto">
+        <%= link_to "退会手続き", unsubscribe_path, class: "btn btn-danger mx-auto" %>
       </div>
     <% end %>
     <%= link_to "戻る", user_path(current_user.id), class: "redirect-btn" %>
