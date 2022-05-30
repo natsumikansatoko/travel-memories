@@ -36,7 +36,7 @@ class User < ApplicationRecord
     end
   end
 
-  def active_for_authentication
-    super && (is_active == true)
+  def active_for_authentication?
+    super && (self.is_active == true)
   end
 end
