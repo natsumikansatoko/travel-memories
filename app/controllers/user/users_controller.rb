@@ -6,7 +6,7 @@ class User::UsersController < ApplicationController
     @memories = @user.memories
     favorites = Favorite.where(user_id: current_user.id).pluck(:memory_id)
     @favorites = Memory.find(favorites)
-    @district_count = District.where(@memory).count
+    @district_count = @memories.distinct.pluck(:district_id).count
   end
 
   def edit
