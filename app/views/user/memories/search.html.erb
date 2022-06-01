@@ -3,107 +3,51 @@
   <div class="row">
     <div class="col-lg-4">
       <% @memories.each do |memory| %>
-      <div class="slider">
-        <% memory.memory_images.each do |image| %>
-          <%= attachment_image_tag image, :image, format: 'jpeg', size: "300x250" %>
-        <% end %>
-      </div>
-
-      <div id='map'></div>
-
-      <style>
-      #map {
-        height: 250px;
-        width: 300px;
-      }
-      </style>
-
-      <script type="text/javascript">
-        function initMap(){
-          var test ={lat: <%= memory.latitude %>, lng: <%= memory.longitude %>};
-
-          var map = new google.maps.Map(document.getElementById('map'), {
-          center: test,
-          zoom: 15,
-          });
-
-          var transitLayer = new google.maps.TransitLayer();
-          transitLayer.setMap(map);
-
-          var contentString = '住所:<%= memory.address %>';
-          var infowindow = new google.maps.InfoWindow({
-            content: contentString
-          });
-
-          var marker = new google.maps.Marker({
-            position: test,
-            map: map,
-            title: contentString
-          });
-
-          marker.addListener('click', function(){
-            infowindow.open(map, marker);
-          });
-        }
-      </script>
-    </div>
-    <div class="col-lg-8">
-      <table class="table">
-        <tr>
-          <th class="text_left">旅行先</th>
-          <td><%= link_to memory.district.name %></td>
-        </tr>
-        <tr>
-          <th class="text_left">住所</th>
-          <td><%= memory.address %></td>
-        </tr>
-        <tr>
-          <th class="text_left">ジャンル</th>
+        <table class="table table-warning">
+        <thead>
+          <th style="width: 8%">投稿者</th>
+          <th style="width: 8%">旅行先</th>
+          <th style="width: 8%">ジャンル</th>
+          <th style="width: 8%">写真</th>
+          <th style="width: 12%">評価</th>
+          <th style="width: 8%">いいね！</th>
+          <th style="width: 8%">ブックマーク</th>
+        </thead>
+        <tbody align="center">
+          <td><%= link_to memory.user.name, memory_path(memory) %></td>
+          <td><%= memory.district.name %></td>
           <td><%= memory.genre.name %></td>
-        </tr>
-        <tr>
-          <th class="text_left">タイトル</th>
-          <td><%= memory.title %></td>
-        </tr>
-        <tr>
-          <th class="text_left">コメント</th>
-          <td><%= memory.body %></td>
-        </tr>
-        <tr>
-          <th class="text_left">評価</th>
-          <td id="rate-<%= memory.id %>"></td>
-        </tr>
-        <tr>
-          <th class="text_left">いいね!</th>
-          <td><%= memory.likes.count %></td>
-        </tr>
-        <script>
-　　　　　$('#rate-<%= memory.id %>').raty({
-　　　　　  size: 15,
-            starOn: '<%= asset_path('star-on.png') %>',
-            starOff: '<%= asset_path('star-off.png') %>',
-            starHalf: '<%= asset_path('star-half.png') %>',
-            half: true,
-            readOnly: true,
-            score: <%= memory.rate %>
-　　　　　});
-　　　　</script>
-
-　　　　<script type="text/javascript">
-　　　　  $(document).ready(function(){
-　　　　    $('.slider').slick({
-　　　　      arrows: true,
-　　　　      dots: true,
-　　　　      infinite: true,
-　　　　      accessibility: true,
-　　　　      slidesToShow: 1,
-　　　　      slidesToScroll: 1
-　　　　    });
-　　　　  });
-　　　　</script>
-
-      </table>
+　　　　　<td>
+　　　　　  <% memory.memory_images.first(1).each do |image| %>
+　　　　　    <%= attachment_image_tag image, :image, size: '100x80' %>
+　　　　　  <% end %>
+　　　　　</td>
+　　　　　<td id="rate-<%= memory.id %>"></td>
+　　　　　<td id="like_buttons_<%= memory.id %>">
+　　　　　  <%= render "user/likes/like", memory: memory %>
+　　　　　</td>
+　　　　　<td>
+　　　　　  <% if memory.favorited_by?(current_user) %>
+　　　　　    <%= link_to "ブックマーク外す", memory_favorites_path(memory), method: :delete %>
+　　　　  　<% else %>
+　　　　　    <%= link_to "ブックマーク", memory_favorites_path(memory), method: :post %>
+　　　　　 <% end %>
+　　　　　</td>
+　　　　　<script>
+　　　　　  $('#rate-<%= memory.id %>').raty({
+　　　　　    size: 15,
+              starOn: '<%= asset_path('star-on.png') %>',
+              starOff: '<%= asset_path('star-off.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              half: true,
+              readOnly: true,
+              score: <%= memory.rate %>
+　　　　　  });
+　　　　　</script>
+        </tbody>
       <% end %>
+      <%= paginate @memories %>
+
     </div>
   </div>
 </div>

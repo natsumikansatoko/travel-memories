@@ -46,7 +46,7 @@ class User::MemoriesController < ApplicationController
   end
 
   def search
-    @memories = Memory.search(params[:keyword])
+    @memories = Memory.search(params[:keyword]).page(params[:page]).per(5)
   end
 
   private

@@ -9,6 +9,7 @@
           <%= f.text_field :keyword, placeholder: "旅の思い出を検索する" %>
           <%= f.submit "検索" %>
         <% end %>
+
       </div>
 
     </div>
@@ -71,6 +72,7 @@
         </tbody>
       <% end %>
       </table>
+      <%= paginate @memories %>
     </div>
   </div>
 </div>
