@@ -14,6 +14,13 @@
  *= require_self
  */
 
+.travel-memories {
+  background-image: image-url("travel.jpg");
+  background-color: rgba(255,255,255,0.7);
+  background-blend-mode: lighten;
+  height: 800px;
+  background-size: cover;
+}
 
 header {
   background-color: rgba(255,200,255,0.6);
