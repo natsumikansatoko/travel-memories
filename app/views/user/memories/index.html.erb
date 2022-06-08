@@ -39,8 +39,8 @@
         </thead>
         <% @memories.each do |memory| %>
         <tbody align="center">
-          <td><%= link_to memory.user.name, memory_path(memory) %></td>
-          <td><%= memory.district.name %></td>
+          <td><%= memory.user.name %></td>
+          <td><%= link_to memory.district.name, memory_path(memory) %></td>
           <td><%= memory.genre.name %></td>
 　　　　　<td>
 　　　　　  <% memory.memory_images.first(1).each do |image| %>
