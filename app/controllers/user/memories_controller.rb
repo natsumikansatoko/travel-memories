@@ -28,6 +28,11 @@ class User::MemoriesController < ApplicationController
 
   def edit
     @memory = Memory.find(params[:id])
+    if @memory.user == current_user
+      render :edit
+    else
+      redirect_to memory_path
+    end
   end
 
   def update
