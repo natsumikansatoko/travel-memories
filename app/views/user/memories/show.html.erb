@@ -4,7 +4,7 @@
     <div class="col-lg-4">
       <div class="slider">
         <% @memory.memory_images.each do |image| %>
-          <%= attachment_image_tag image, :image, :fill, 300, 250,  format: 'jpeg' %>
+          <%= attachment_image_tag image, :image, format: 'jpeg' %>
         <% end %>
       </div>
 
