@@ -2,9 +2,8 @@
   <h2><i class="fas fa-suitcase-rolling"></i> 検索結果</h2>
   <div class="row">
     <div class="col">
-      <% @memories.each do |memory| %>
-        <table class="table table-warning">
-        <thead>
+      <table class="table table-warning">
+        <tr>
           <th style="width: 8%">投稿者</th>
           <th style="width: 8%">旅行先</th>
           <th style="width: 8%">ジャンル</th>
@@ -12,40 +11,42 @@
           <th style="width: 12%">評価</th>
           <th style="width: 8%">いいね！</th>
           <th style="width: 8%">ブックマーク</th>
-        </thead>
-        <tbody align="center">
+        </tr>
+        <tr>
+          <% @memories.each do |memory| %>
           <td><%= memory.user.name %></td>
           <td><%= link_to memory.district.name, memory_path(memory) %></td>
           <td><%= memory.genre.name %></td>
-　　　　　<td>
-　　　　　  <% memory.memory_images.first(1).each do |image| %>
-　　　　　    <%= attachment_image_tag image, :image, class: 'thumbnail' %>
-　　　　　  <% end %>
-　　　　　</td>
-　　　　　<td id="rate-<%= memory.id %>"></td>
-　　　　　<td id="like_buttons_<%= memory.id %>">
-　　　　　  <%= render "user/likes/like", memory: memory %>
-　　　　　</td>
-　　　　　<td>
-　　　　　  <% if memory.favorited_by?(current_user) %>
-　　　　　    <%= link_to "ブックマーク外す", memory_favorites_path(memory), method: :delete %>
-　　　　  　<% else %>
-　　　　　    <%= link_to "ブックマーク", memory_favorites_path(memory), method: :post %>
-　　　　　 <% end %>
-　　　　　</td>
-　　　　　<script>
-　　　　　  $('#rate-<%= memory.id %>').raty({
-　　　　　    size: 15,
-              starOn: '<%= asset_path('star-on.png') %>',
-              starOff: '<%= asset_path('star-off.png') %>',
-              starHalf: '<%= asset_path('star-half.png') %>',
-              half: true,
-              readOnly: true,
-              score: <%= memory.rate %>
-　　　　　  });
-　　　　　</script>
-        </tbody>
+　　　　  <td>
+　　　　    <% memory.memory_images.first(1).each do |image| %>
+　　　　      <%= attachment_image_tag image, :image, class: 'thumbnail' %>
+　　　　    <% end %>
+　　　　  </td>
+　　　　  <td id="rate-<%= memory.id %>"></td>
+　　　　  <td id="like_buttons_<%= memory.id %>">
+　　　　    <%= render "user/likes/like", memory: memory %>
+　　　　  </td>
+　　　　  <td>
+　　　　    <% if memory.favorited_by?(current_user) %>
+　　　　      <%= link_to "ブックマーク外す", memory_favorites_path(memory), method: :delete %>
+　　　　　  <% else %>
+　　　　      <%= link_to "ブックマーク", memory_favorites_path(memory), method: :post %>
+　　　　    <% end %>
+　　　　  </td>
+　　　　</tr>
+　　　　<script>
+　　　　  $('#rate-<%= memory.id %>').raty({
+　　　　    size: 15,
+            starOn: '<%= asset_path('star-on.png') %>',
+            starOff: '<%= asset_path('star-off.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= memory.rate %>
+　　　　  });
+　　　　</script>
       <% end %>
+      </table>
       <%= paginate @memories %>
 
     </div>
