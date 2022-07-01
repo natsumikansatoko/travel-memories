@@ -1,25 +1,25 @@
 <div class="container my-4">
   <h2><i class="fas fa-suitcase-rolling"></i><%= @district.name %>思い出一覧</h2>
   <div class="row">
-    <div class="col-lg-12">
-      <table class="table table-boedered">
-        <thead align="center">
-          <th style="width: 12%">投稿者</th>
-          <th style="width: 12%">旅行先</th>
-          <th style="width: 12%">ジャンル</th>
-          <th style="width: 12%">写真</th>
-          <th style="width: 12%">評価</th>
-          <th style="width: 12%">いいね！</th>
-          <th style="width: 12%">ブックマーク</th>
-        </thead>
-        <% @memories.each do |memory| %>
-        <tbody align="center">
+    <div class="col">
+      <table class="table table-warning">
+        <tr>
+          <th style="width: 8%" class="pink">投稿者</th>
+          <th style="width: 8%" class="pink">旅行先</th>
+          <th style="width: 8%" class="pink">ジャンル</th>
+          <th style="width: 8%" class="pink">写真</th>
+          <th style="width: 12%" class="pink">評価</th>
+          <th style="width: 8%" class="pink">いいね！</th>
+          <th style="width: 8%" class="pink">ブックマーク</th>
+        </tr>
+        <tr>
+          <% @memories.each do |memory| %>
           <td><%= memory.user.name %></td>
           <td><%= link_to memory.district.name, memory_path(memory) %></td>
           <td><%= memory.genre.name %></td>
 　　　　　<td>
 　　　　　  <% memory.memory_images.first(1).each do |image| %>
-　　　　　    <%= attachment_image_tag image, :image, size: '100x80' %>
+　　　　　    <%= attachment_image_tag image, :image, class: 'thumbnail' %>
 　　　　　  <% end %>
 　　　　　</td>
 　　　　　<td id="rate-<%= memory.id %>"></td>
@@ -40,7 +40,7 @@
               score: <%= memory.rate %>
 　　　　　  });
 　　　　　</script>
-        </tbody>
+        </tr>
       <% end %>
       </table>
     </div>
