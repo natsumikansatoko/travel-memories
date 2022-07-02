@@ -13,31 +13,31 @@
       <%= form_with model: @memory, local: true do |f| %>
 
         <div class="form-group">
-          <%= f.label :都道府県, class: 'col-md-3 col-form-label' %>
+          <%= f.label :都道府県, class: 'col-md-3' %>
           <%= f.collection_select(:district_id, District.all, :id, :name, {include_blank: "---"}, {class:"district-select"}) %>
         </div>
         <div class="form-group">
-          <%= f.label :住所, class: 'col-md-3 col-form-label' %>
-          <%= f.text_field :address, :placeholder => "東京都千代田区二番町", size: 40 %>
+          <%= f.label :住所, class: 'col-md-3' %>
+          <%= f.text_field :address, :placeholder => "東京都千代田区二番町", class: 'col-md-5' %>
         </div>
         <div class="form-group">
-          <%= f.label :ジャンル, class: 'col-md-3 col-form-label' %>
-          <%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "-- 選択してください --", size: 40 %>
+          <%= f.label :ジャンル, class: 'col-md-3' %>
+          <%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "-- 選択してください --", class: 'col-md-3' %>
         </div>
         <div class="form-group">
-          <%= f.label :タイトル, class: 'col-md-3 col-form-label' %>
-          <%= f.text_field :title, :placeholder => "タイトル", size: 40 %>
+          <%= f.label :タイトル, class: 'col-md-3' %>
+          <%= f.text_field :title, :placeholder => "タイトル", class: 'col-md-5' %>
         </div>
         <div class="form-group">
-          <%= f.label :コメント, class: 'col-md-3 col-form-label' %>
-          <%= f.text_area :body, :placeholder => "ここに旅行の思い出を記述してください", size: "40x5" %>
+          <%= f.label :コメント, class: 'col-md-3' %>
+          <%= f.text_area :body, :placeholder => "ここに旅行の思い出を記述してください", size: "40x5", class: 'col-md-5' %>
         </div>
         <div class="form-group">
-          <%= f.label :写真, class: 'col-md-3 col-form-label' %>
+          <%= f.label :写真, class: 'col-md-3' %>
           <%= f.attachment_field :memory_images_images, multiple: true %>
         </div>
         <div class="form-group" id="rate">
-          <%= f.label :評価, class: 'col-md-3 col-form-label' %>
+          <%= f.label :評価, class: 'col-md-3' %>
           <%= f.hidden_field :rate, id: :review_star %>
         </div>
         <div class="form-group col-6 mx-auto">
