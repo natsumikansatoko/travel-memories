@@ -2,6 +2,11 @@
   <h2><i class="fas fa-suitcase-rolling"></i><%= @district.name %>思い出一覧</h2>
   <div class="row">
     <div class="col">
+      <% if @memories.empty? %>
+        <br>
+        <h3><%= @district.name %>の投稿がありません</h3>
+        <h4><%= link_to "Topへ戻る", root_path %></h4>
+      <% else %>
       <table class="table table-warning">
         <tr>
           <th style="width: 8%" class="pink">投稿者</th>
@@ -43,6 +48,7 @@
         </tr>
       <% end %>
       </table>
+      <% end %>
     </div>
   </div>
 </div>
