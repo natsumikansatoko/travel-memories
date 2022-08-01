@@ -5,11 +5,11 @@
     <h5><i class="fas fa-solid fa-camera"></i> <%= link_to "旅の思い出投稿", new_memory_path %></h5>
   </div>
 　<div class="search-form col-lg-4">
-　  <p>日本地図から旅の思い出を見つけられます♪</p>
     <%= form_with url: search_memories_path, method: :get, local: true do |f| %>
       <%= f.text_field :keyword, placeholder: "旅の思い出を検索する" %>
       <%= f.submit "検索" %>
     <% end %>
+    <p>日本地図から旅の思い出を見つけられます♪</p>
   </div>
 
   <div class="container my-4"id="my-map"></div>
